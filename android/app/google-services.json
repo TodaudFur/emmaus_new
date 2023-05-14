@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "355955833580",
+    "project_id": "emmaus-a4ceb",
+    "storage_bucket": "emmaus-a4ceb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355955833580:android:dc9ca02d2444491467c3c9",
+        "android_client_info": {
+          "package_name": "com.songpa.emmaus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355955833580-ojcfmtbe8minr8tshoeniabvkgp7e9ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl32JXjabgxr3o5PA4OC4GZGiOdzFChj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355955833580-ojcfmtbe8minr8tshoeniabvkgp7e9ee.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "355955833580-dith9gkmnho9sram6pllt7v0k4io660l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.songpa.emmauss",
+                "app_store_id": "1568644750"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

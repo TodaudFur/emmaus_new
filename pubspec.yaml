@@ -1,0 +1,100 @@
+name: emmaus_new
+description: Emmaus New
+publish_to: 'none'
+version: 1.4.0+29
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+  #Firebase Package
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
+  firebase_messaging: ^14.3.0
+  cloud_functions: ^4.0.13
+
+  #Internet
+  http: ^0.13.5
+  http_parser: ^4.0.2
+
+  #Util
+  url_launcher: ^6.1.10 # URL
+  animated_splash_screen: ^1.3.0 # 스플래쉬 화면
+  permission_handler: ^10.2.0 # 권한
+  path_provider: ^2.0.13 # 파일 경로
+  shared_preferences: ^2.0.18
+  package_info_plus: ^3.0.3 # 패키지 정보
+  cached_network_image: ^3.2.3
+  file_picker: ^5.2.6 # 파일 가져오기
+  mime: ^1.0.4 # 서식
+  device_info_plus: ^8.1.0 # 핸드폰 정보
+  intl: ^0.17.0
+  image_picker: ^0.8.7 # 이미지 가져오기
+  fluttertoast: ^8.2.1 # 토스트 메세지 표시
+
+  #Notification
+  flutter_local_notifications: ^13.0.0
+  flutter_native_timezone: ^2.0.0
+
+  #Icons
+  font_awesome_flutter: ^10.4.0
+  line_icons: ^2.0.1
+
+  #State Management
+  get: ^4.6.5
+
+  #Capture
+  screenshot: ^1.3.0
+  image_gallery_saver: ^1.7.1
+
+  #Etc.
+  confetti: ^0.7.0 #Confetti 폭죽
+  carousel_slider: ^4.2.1 # 주보 슬라이드
+  flutter_speed_dial: ^6.2.0 # FAB 패키지
+  qr_code_scanner: ^1.0.1 #QR 코드 스캐너
+  flutter_spinkit: ^5.1.0 # 돌아가는 이미지(로딩 이미지 등)
+  photo_view: ^0.14.0 # 이미지 확대, 갤러리
+  pull_to_refresh: ^2.0.0 # 당겨서 새로고침
+  youtube_player_iframe: ^4.0.4 # 유튜브 플레이어
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Noto
+      fonts:
+        - asset: asset/fonts/NotoSansKR-Black.otf
+          weight: 900
+        - asset: asset/fonts/NotoSansKR-Bold.otf
+          weight: 800
+        - asset: asset/fonts/NotoSansKR-Medium.otf
+          weight: 700
+        - asset: asset/fonts/NotoSansKR-Regular.otf
+          weight: 600
+        - asset: asset/fonts/NotoSansKR-Light.otf
+          weight: 500
+    - family: Mapo
+      fonts:
+        - asset: asset/fonts/MapoGoldenPier.ttf
+    - family: Nanum
+      fonts:
+        - asset: asset/fonts/NanumGothicBold.otf
+          weight: 900
+        - asset: asset/fonts/NanumBarunGothic.ttf
+          weight: 600
+        - asset: asset/fonts/NanumBarunGothicBold.ttf
+          weight: 700
+        - asset: asset/fonts/NanumGothic.otf
+          weight: 500
+  assets:
+    - asset/images/
+    - asset/btb/
