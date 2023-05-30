@@ -14,7 +14,7 @@ class UserInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '${userCR.userModel.cell}셀 / ${userCR.userModel.team}팀 / ${userCR.userModel.term}기',
+          '${userCR.userModel.cell} 구역 / ${userCR.userModel.team} 팀 / ${userCR.userModel.term} 기',
           style: const TextStyle(
             fontFamily: 'Noto',
             fontSize: 15.0,

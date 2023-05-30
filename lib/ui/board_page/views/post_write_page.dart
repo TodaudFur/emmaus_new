@@ -23,6 +23,7 @@ class _PostWritePageState extends State<PostWritePage> {
 
   @override
   void initState() {
+    print(widget.tableType);
     if (widget.tableType == 'pray') {
       boardCR.getCellPeople(cell: widget.cell).then((value) {
         if (value != null && value) {

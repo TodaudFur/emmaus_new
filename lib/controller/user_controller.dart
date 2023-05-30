@@ -23,6 +23,7 @@ class UserController extends GetxController {
     normal: 0,
     userId: 0,
     point: 0,
+    isLeader: false,
   ).obs;
   UserModel get userModel => _userModel.value;
   set userModel(val) => _userModel.value = val;
@@ -114,6 +115,7 @@ class UserController extends GetxController {
         normal: 0,
         userId: 0,
         point: 0,
+        isLeader: false,
       );
       return true;
     } else {

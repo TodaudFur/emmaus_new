@@ -1,13 +1,12 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:emmaus_new/constants.dart';
+import 'package:emmaus_new/data/model/home_post_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../data/model/post_model.dart';
 import '../detail_screen.dart';
 
 class HomeController extends GetxController {
@@ -29,8 +28,8 @@ class HomeController extends GetxController {
   get bible => _bible.value;
   set bible(val) => _bible.value = val;
 
-  final _boardList = <PostModel>[].obs;
-  List<PostModel> get boardList => _boardList;
+  final _boardList = <HomePostModel>[].obs;
+  List<HomePostModel> get boardList => _boardList;
   set boardList(val) => _boardList.value = val;
 
   final _bulletinLoading = false.obs;
@@ -43,13 +42,11 @@ class HomeController extends GetxController {
       final response = await httpClient.get(
         Uri.parse("$kBaseUrl/emmaus_board_home_get.php"),
       );
-      log(response.body);
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = jsonDecode(response.body);
         boardList = jsonResponse['result']
-            .map<PostModel>((json) => PostModel.fromJson(json))
+            .map<HomePostModel>((json) => HomePostModel.fromJson(json))
             .toList();
-        print(boardList);
       } else {
         print('Error Select Board');
       }

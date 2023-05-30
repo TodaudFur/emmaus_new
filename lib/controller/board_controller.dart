@@ -109,8 +109,10 @@ class BoardController extends GetxController {
       String? cell,
       required String tableType}) async {
     //게시글 쓰기
-    Get.dialog(const Center(child: CircularProgressIndicator()));
+    Get.dialog(const Center(child: CircularProgressIndicator()),
+        barrierDismissible: false);
 
+    print(userCR.userModel.id);
     try {
       final response = await httpClient.post(
         Uri.parse("$kBaseUrl/emmaus_post_write.php"),
@@ -126,9 +128,14 @@ class BoardController extends GetxController {
       log(response.body);
       if (response.statusCode == 200) {
         if (response.body == "1") {
+          Get.closeAllSnackbars();
           Get.back();
           Get.back();
           getPostList(tableType: tableType);
+        } else {
+          Get.closeAllSnackbars();
+          Get.back();
+          Get.snackbar('Error', '글 작성에 실패했습니다. 나중에 다시 시도해주세요');
         }
       } else {
         print('Error Write Post');

@@ -9,6 +9,7 @@ class UserModel {
   int special;
   int normal;
   int point;
+  bool isLeader;
 
   UserModel({
     required this.userId,
@@ -21,6 +22,7 @@ class UserModel {
     required this.special,
     required this.normal,
     required this.point,
+    required this.isLeader,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class UserModel {
       special: int.parse(json['special']),
       normal: int.parse(json['normal']),
       point: int.parse(json['point']),
+      isLeader: json['isLeader'],
     );
   }
 
@@ -48,5 +51,6 @@ class UserModel {
         'special': special,
         'normal': normal,
         'point': point,
+        'isLeader': isLeader,
       };
 }

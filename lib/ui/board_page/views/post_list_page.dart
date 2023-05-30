@@ -22,6 +22,7 @@ class PostListPage extends StatefulWidget {
 
 class _PostListPageState extends State<PostListPage> {
   final boardCR = Get.find<BoardController>();
+  final userCR = Get.find<UserController>();
 
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
@@ -69,12 +70,14 @@ class _PostListPageState extends State<PostListPage> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              widget.tableName == "자유게시판" || widget.tableName == "셀기도게시판"
+              widget.tableName == "자유게시판" ||
+                      (userCR.userModel.isLeader &&
+                          (widget.tableName != '예배' &&
+                              widget.tableName != '주보'))
                   ? Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          final userCR = Get.find<UserController>();
                           String cell = '새가족';
                           if (userCR.userModel.cell == userCR.userModel.name) {
                             cell = userCR.userModel.cell;

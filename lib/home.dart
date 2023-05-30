@@ -249,9 +249,11 @@ class _HomeState extends State<Home> {
                                 itemCount: homeCR.boardList.length,
                                 itemBuilder: (context, index) {
                                   return BoardRow(
-                                    post: homeCR.boardList[index],
-                                    tableName: '자유게시판',
-                                    tableType: 'free',
+                                    post: homeCR.boardList[index].post,
+                                    tableName:
+                                        homeCR.boardList[index].boardName,
+                                    tableType:
+                                        homeCR.boardList[index].boardType,
                                   );
                                 }),
                       ),
