@@ -85,6 +85,7 @@ class UserController extends GetxController {
       }
     } catch (e) {
       print("exception : $e");
+      return false;
     }
     return false;
   }

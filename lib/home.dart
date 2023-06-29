@@ -3,6 +3,7 @@ import 'package:emmaus_new/controller/home_controller.dart';
 import 'package:emmaus_new/controller/user_controller.dart';
 import 'package:emmaus_new/ui/board_page/widgets/board_row.dart';
 import 'package:emmaus_new/ui/mdrive.dart';
+import 'package:emmaus_new/ui/summer_23_fre_page/summer_23_fre_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'constants.dart';
 import 'controller/board_controller.dart';
 import 'creeds.dart';
+import 'login.dart';
 
 ///메인 홈 화면
 
@@ -178,6 +180,52 @@ class _HomeState extends State<Home> {
               ),
               const Divider(
                 color: kBodyColor,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Stack(
+                  children: [
+                    const Text(
+                      'E-프리퀀시 ',
+                      style: TextStyle(
+                        fontFamily: 'Noto',
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 0,
+                        child: Container(
+                          height: 10,
+                          width: MediaQuery.of(context).size.width,
+                          color: kSelectColor.withOpacity(0.2),
+                        )),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: kSelectColor,
+                ),
+                onPressed: () {
+                  if (userCR.userModel.userId == 0) {
+                    Get.snackbar("로그인", "로그인이 필요합니다");
+                    Get.to(const LoginPage());
+                  } else if (DateTime.now().isAfter(DateTime(2023, 07, 03))) {
+                    Get.to(Summer23FrePage());
+                  } else {
+                    Get.snackbar("Error 404", "7월 3일부터 이용가능합니다!");
+                  }
+                },
+                child: const Text(
+                  "입장",
+                  style: TextStyle(
+                    fontFamily: 'Noto',
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
               InkWell(
                 onTap: () {

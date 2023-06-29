@@ -16,7 +16,7 @@ class DriveDetail extends StatefulWidget {
 }
 
 class _DriveDetailState extends State<DriveDetail> {
-  final driveController = Get.put(DriveController());
+  final driveController = Get.find<DriveController>();
   final String title = Get.arguments ?? "";
 
   @override

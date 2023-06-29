@@ -10,6 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:upgrader/upgrader.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'constants.dart';
@@ -91,11 +92,13 @@ class _MyAppState extends State<MyApp> {
               selectionHandleColor: kSelectColor,
             )),
         home: AnimatedSplashScreen(
-          duration: 500,
+          duration: 200,
           splash: const Image(
             image: AssetImage('asset/images/logo_em2_txt.png'),
           ),
-          nextScreen: const MyHomePage(),
+          nextScreen: UpgradeAlert(
+            child: const MyHomePage(),
+          ),
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: Colors.white,
         ));

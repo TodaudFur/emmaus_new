@@ -3,10 +3,12 @@ import 'package:emmaus_new/ui/drive_detail/drive_detail.dart';
 import 'package:emmaus_new/ui/worship_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mime/mime.dart';
 
 import '../constants.dart';
 import '../controller/drive_controller.dart';
 import '../controller/drive_home_controller.dart';
+import '../detail_screen.dart';
 
 class MDrive extends StatefulWidget {
   const MDrive({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class MDrive extends StatefulWidget {
 class _MDriveState extends State<MDrive> {
   final driveHomeController = Get.put(DriveHomeController());
   final userCR = Get.find<UserController>();
+  final driveController = Get.put(DriveController());
 
   @override
   void initState() {
@@ -367,10 +370,42 @@ class _MDriveState extends State<MDrive> {
                                               int index) {
                                             return InkWell(
                                               onTap: () {
-                                                final driveController =
-                                                    Get.put(DriveController());
-                                                driveController.downloadFile(
-                                                    "$kBaseUrl/drive/${driveHomeController.recentFiles[index].totalDirectory}/${driveHomeController.recentFiles[index].fileName}.${driveHomeController.recentFiles[index].fileType}");
+                                                if (driveController
+                                                        .driveList[index]
+                                                        .fileType ==
+                                                    'folder') {
+                                                  driveController.addDirectory(
+                                                      driveController
+                                                          .driveList[index]
+                                                          .fileName);
+                                                  driveController
+                                                          .directoryName =
+                                                      driveController
+                                                          .driveList[index]
+                                                          .fileName;
+                                                  driveController.getDriveList(
+                                                      driveController
+                                                          .driveList[index]
+                                                          .fileName);
+                                                } else {
+                                                  final mimeType = lookupMimeType(
+                                                      ".${driveController.driveList[index].fileType}");
+                                                  final fileUrl =
+                                                      "$kBaseUrl/drive/${driveController.driveList[index].totalDirectory}${driveController.driveList[index].fileName}.${driveController.driveList[index].fileType}";
+                                                  switch (mimeType!
+                                                      .split("/")
+                                                      .first) {
+                                                    case "image":
+                                                      Get.to(DetailScreen(
+                                                          item: [fileUrl],
+                                                          index: 0));
+                                                      break;
+                                                    default:
+                                                      driveController
+                                                          .downloadFile(
+                                                              fileUrl);
+                                                  }
+                                                }
                                               },
                                               child: Container(
                                                 margin: const EdgeInsets.only(

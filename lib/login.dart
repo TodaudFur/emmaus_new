@@ -90,7 +90,63 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Colors.white,
                               ),
                               TextField(
-                                onSubmitted: (String s) {},
+                                onSubmitted: (String s) {
+                                  Get.dialog(const Center(
+                                    child: CircularProgressIndicator(),
+                                  ));
+                                  setState(() {
+                                    userCR
+                                        .login(loginIdCR.text, loginPwdCR.text)
+                                        .then((value) {
+                                      Get.back();
+                                      if (userCR.userModel.isFirst == "False") {
+                                        Navigator.of(context)
+                                            .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        FirstLogin()),
+                                                (route) => false)
+                                            .then((value) => setState(() {}));
+                                      } else {
+                                        print("value : $value");
+                                        if (value) {
+                                          if (autoLogin) {
+                                            userCR.trueAutoLogin(loginIdCR.text,
+                                                loginPwdCR.text);
+                                          }
+                                          Fluttertoast.showToast(
+                                              msg: "로그인 성공!",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              fontSize: 16.0);
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const MyHomePage()),
+                                                  (route) => false)
+                                              .then((value) => setState(() {}));
+                                        } else {
+                                          Fluttertoast.showToast(
+                                              msg:
+                                                  "로그인 실패! : 아이디 또는 비밀번호를 확인해주세요.",
+                                              toastLength: Toast.LENGTH_SHORT,
+                                              gravity: ToastGravity.BOTTOM,
+                                              timeInSecForIosWeb: 1,
+                                              fontSize: 16.0);
+                                        }
+                                      }
+                                    }).catchError((onError) {
+                                      Fluttertoast.showToast(
+                                          msg: "로그인 실패! : 아이디 또는 비밀번호를 확인해주세요.",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          fontSize: 16.0);
+                                    });
+                                  });
+                                },
                                 controller: loginPwdCR,
                                 obscureText: true,
                                 cursorColor: kSelectColor,
@@ -174,6 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                                 userCR
                                     .login(loginIdCR.text, loginPwdCR.text)
                                     .then((value) {
+                                  Get.back();
                                   if (userCR.userModel.isFirst == "False") {
                                     Navigator.of(context)
                                         .pushAndRemoveUntil(
@@ -183,24 +240,32 @@ class _LoginPageState extends State<LoginPage> {
                                             (route) => false)
                                         .then((value) => setState(() {}));
                                   } else {
-                                    Get.back();
-                                    if (autoLogin) {
-                                      userCR.trueAutoLogin(
-                                          loginIdCR.text, loginPwdCR.text);
+                                    if (value) {
+                                      if (autoLogin) {
+                                        userCR.trueAutoLogin(
+                                            loginIdCR.text, loginPwdCR.text);
+                                      }
+                                      Fluttertoast.showToast(
+                                          msg: "로그인 성공!",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          fontSize: 16.0);
+                                      Navigator.of(context)
+                                          .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const MyHomePage()),
+                                              (route) => false)
+                                          .then((value) => setState(() {}));
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: "로그인 실패! : 아이디 또는 비밀번호를 확인해주세요.",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          timeInSecForIosWeb: 1,
+                                          fontSize: 16.0);
                                     }
-                                    Fluttertoast.showToast(
-                                        msg: "로그인 성공!",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 1,
-                                        fontSize: 16.0);
-                                    Navigator.of(context)
-                                        .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const MyHomePage()),
-                                            (route) => false)
-                                        .then((value) => setState(() {}));
                                   }
                                 }).catchError((onError) {
                                   Fluttertoast.showToast(
